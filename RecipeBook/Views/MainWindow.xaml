@@ -1,0 +1,24 @@
+﻿<Window x:Class= "RecipeBook.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:RecipeBook"
+        mc:Ignorable="d"
+        Title="Recipe Book" Height="450" Width="800">
+    <Grid Background="lightGray">
+        <Grid Grid.Row="1" Margin="25, 40, 25, 15" Background="White">
+            <TextBox x:Name="searchBar" Height="30" Width="200" Margin="10,10,0,0" BorderBrush="Black" BorderThickness="2" VerticalAlignment="Top" HorizontalAlignment="Left" TextChanged="searchBar_TextChanged" FontStyle="Italic" FontWeight="Light"></TextBox>
+            <Button Height="30" Command="{Binding ShowWindowCommand}" Width="100" Content="+ Add Recipe" Margin="625,10,0,0" Background="DarkCyan"  FontSize="14" FontWeight="Bold" Padding="5" VerticalAlignment="Top" HorizontalAlignment="Left"></Button>
+            <ListView Name="RecipeList" ItemsSource="{Binding Recipes}" BorderBrush="WhiteSmoke" Margin="25,70,0,10" Padding="0" HorizontalAlignment="Left" Width="380" Background="Azure" BorderThickness="1">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <!--<TextBlock x:Name="listItem" Text="{Binding recipeName}" MouseLeftButtonDown="listItem_MouseLeftButtonDown" />-->
+                        <Button x:Name="listItem" Content="{Binding recipeName}" Width="180" Height="auto" Command="{Binding DisplayRecipe}"  CommandParameter="{Binding recipeName}"/>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+            <TextBlock x:Name="RecipeDetails" Text="{Binding DisplayRecipe}" HorizontalAlignment="Left" Margin="431,70,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="299" Width="294" Background="LightGray"/>
+        </Grid>
+    </Grid>
+</Window>
